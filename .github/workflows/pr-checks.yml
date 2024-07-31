@@ -4,6 +4,9 @@ on:
   pull_request:
   push:
 
+env:
+  MIX_ENV: test
+
 jobs:
   tests:
     strategy:
@@ -29,8 +32,8 @@ jobs:
       shell: devenv shell bash -- -e {0}
       run: bash -x .github/workflows/generate-env-phoenix-test.sh
 
-    - name: ci steps
+    - name: pr checks
       shell: devenv shell bash -- -e {0}
       run: |
         devenv up -d
-        bash -x .github/workflows/pr-request-actions.sh
+        bash -x .github/workflows/pr-actions.sh
