@@ -33,4 +33,4 @@ jobs:
       shell: devenv shell bash -- -e {0}
       run: |
         devenv up -d
-        bash -x .github/workflow/pr-request-actions.sh
+        bash -x .github/workflows/pr-request-actions.sh
