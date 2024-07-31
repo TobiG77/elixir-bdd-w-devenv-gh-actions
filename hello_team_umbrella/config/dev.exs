@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :hello_team, HelloTeam.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "hello_team_dev",
+  username: System.get_env("HELLO_TEAM__PGUSER"),
+  password: System.get_env("HELLO_TEAM__PGPASSWORD"),
+  hostname: System.get_env("HELLO_TEAM__PGHOST"),
+  database: System.get_env("HELLO_TEAM__PGDATABASE"),
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

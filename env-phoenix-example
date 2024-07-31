@@ -1,0 +1,5 @@
+HELLO_TEAM__PGUSER=phoenix_dev
+HELLO_TEAM__PGPASSWORD=phoenix_dev_pass
+HELLO_TEAM__PGHOST=localhost
+HELLO_TEAM__PGDATABASE=phoenix_dev
+HELLO_TEAM__SECRET_KEY_BASE="$(mix phx.gen.secret)"
