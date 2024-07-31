@@ -13,7 +13,7 @@
   };
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git pkgs.nodejs_20 pkgs.postgresql pkgs.inotify-tools pkgs.glibcLocales ];
+  packages = [ pkgs.git pkgs.act pkgs.gettext pkgs.nodejs_20 pkgs.postgresql pkgs.inotify-tools pkgs.glibcLocales ];
 
   enterTest = ''
     echo "Ensuring LC_ALL is set to en_NZ.UTF-8";
