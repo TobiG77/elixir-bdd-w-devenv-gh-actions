@@ -4,6 +4,7 @@
   cd hello_team_umbrella
   mix local.hex --force
   mix local.rebar --force
+  mix do deps.get, compile
   MIX_PHX_GEN_SECRET=$(mix phx.gen.secret)
   echo test
   export MIX_PHX_GEN_SECRET
