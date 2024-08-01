@@ -58,7 +58,8 @@ defmodule HelloTeamWeb.MixProject do
       {:gettext, "~> 0.20"},
       {:hello_team, in_umbrella: true},
       {:jason, "~> 1.2"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false}
     ]
   end
 

@@ -1,13 +1,14 @@
-name: "PR Checks"
+name: "CI Checks"
 
 on:
   pull_request:
+  push:
 
 env:
   MIX_ENV: test
 
 jobs:
-  pr_checks:
+  ci_checks:
     strategy:
       matrix:
         os: [ubuntu-22.04]
@@ -31,10 +32,12 @@ jobs:
       shell: devenv shell bash -- -e {0}
       run: bash -x .github/workflows/generate-env-phoenix-test.sh
 
-    - name: pr checks
+    - name: ci checks
       shell: devenv shell bash -- -e {0}
       run: |
         devenv up -d
-        cd hello_team_umbrella ; mix deps.get
-        mix credo
-        cd apps/hello_team_web ; mix do deps.get, sobelow
+        cd hello_team_umbrella
+        mix do deps.get, compile
+        mix ecto.drop ||:
+        mix ecto.setup
+        mix test
