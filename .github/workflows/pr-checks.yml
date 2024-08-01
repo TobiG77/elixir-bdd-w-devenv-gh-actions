@@ -7,7 +7,7 @@ env:
   MIX_ENV: test
 
 jobs:
-  tests:
+  pr_checks:
     strategy:
       matrix:
         os: [ubuntu-22.04]

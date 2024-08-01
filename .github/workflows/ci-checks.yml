@@ -1,13 +1,14 @@
 name: "CI Checks"
 
 on:
+  pull_request:
   push:
 
 env:
   MIX_ENV: test
 
 jobs:
-  tests:
+  ci_checks:
     strategy:
       matrix:
         os: [ubuntu-22.04]
