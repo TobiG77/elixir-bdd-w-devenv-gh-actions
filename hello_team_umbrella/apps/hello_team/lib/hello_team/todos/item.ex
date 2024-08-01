@@ -1,4 +1,8 @@
 defmodule HelloTeam.Todos.Item do
+  @moduledoc """
+  How we persist items
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
