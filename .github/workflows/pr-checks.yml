@@ -35,5 +35,6 @@ jobs:
       shell: devenv shell bash -- -e {0}
       run: |
         devenv up -d
-        cd hello_team_umbrella ; mix do deps.get, credo
-        cd hello_team_umbrella/apps/hello_team_web ; mix do deps.get, sobelow
+        cd hello_team_umbrella ; mix deps.get
+        mix credo
+        cd apps/hello_team_web ; mix do deps.get, sobelow

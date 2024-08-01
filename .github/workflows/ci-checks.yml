@@ -36,9 +36,8 @@ jobs:
       shell: devenv shell bash -- -e {0}
       run: |
         devenv up -d
-        cd hello_team_umbrella ; {
-          mix do deps.get, compile
-          mix ecto.drop ||:
-          mix ecto.setup
-          mix test
-        }
+        cd hello_team_umbrella
+        mix do deps.get, compile
+        mix ecto.drop ||:
+        mix ecto.setup
+        mix test
