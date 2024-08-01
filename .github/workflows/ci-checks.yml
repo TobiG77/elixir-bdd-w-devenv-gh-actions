@@ -1,7 +1,7 @@
-name: "PR Checks"
+name: "CI Checks"
 
 on:
-  pull_request:
+  push:
 
 env:
   MIX_ENV: test
@@ -31,8 +31,8 @@ jobs:
       shell: devenv shell bash -- -e {0}
       run: bash -x .github/workflows/generate-env-phoenix-test.sh
 
-    - name: pr checks
+    - name: ci checks
       shell: devenv shell bash -- -e {0}
       run: |
-        devenv up -d
-        bash -x .github/workflows/pr-actions.sh
+        cd hello_team_umbrella ; mix do deps.get, credo
+        cd hello_team_umbrella/apps/hello_team_web ; mix do deps.get, sobelow
