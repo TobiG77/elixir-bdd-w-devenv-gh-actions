@@ -1,0 +1,12 @@
+defmodule HelloTeam.Repo.Migrations.CreateItems do
+  use Ecto.Migration
+
+  def change do
+    create table(:items) do
+      add :label, :string
+      add :description, :text
+
+      timestamps()
+    end
+  end
+end
