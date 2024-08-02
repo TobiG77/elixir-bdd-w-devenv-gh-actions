@@ -23,12 +23,24 @@ defmodule HelloTeam.Umbrella.MixProject do
   #
   # Dependencies listed here are available only for this project
   # and cannot be accessed from applications inside the apps/ folder.
+
   defp deps do
+    Enum.concat(default_deps(), test_deps())
+  end
+
+  defp default_deps do
     [
       # Required to run "mix format" on ~H/.heex files from the umbrella root
       # TODO bump on release to {:phoenix_live_view, ">= 0.0.0"},
-      {:phoenix_live_view, "~> 1.0.0-rc.1", override: true},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:phoenix_live_view, "~> 1.0.0-rc.1", override: true}
+    ]
+  end
+
+  def test_deps do
+    [
+      {:cabbage, "~> 0.4.0", only: :test},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:faker, "~> 0.18", only: :test}
     ]
   end
 
