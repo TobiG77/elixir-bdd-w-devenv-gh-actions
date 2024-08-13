@@ -19,12 +19,12 @@ defmodule HelloTeamWeb.Router do
 
     get "/", PageController, :home
 
-    live "/items", ItemLive.Index, :index
-    live "/items/new", ItemLive.Index, :new
-    live "/items/:id/edit", ItemLive.Index, :edit
+    live "/tasks", TaskLive.Index, :index
+    live "/tasks/new", TaskLive.Index, :new
+    live "/tasks/:id/edit", TaskLive.Index, :edit
 
-    live "/items/:id", ItemLive.Show, :show
-    live "/items/:id/show/edit", ItemLive.Show, :edit
+    live "/tasks/:id", TaskLive.Show, :show
+    live "/tasks/:id/show/edit", TaskLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

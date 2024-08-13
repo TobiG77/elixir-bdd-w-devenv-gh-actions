@@ -1,4 +1,4 @@
-defmodule HelloTeamWeb.ItemLive.Show do
+defmodule HelloTeamWeb.TaskLive.Show do
   use HelloTeamWeb, :live_view
 
   alias HelloTeam.Todos
@@ -13,9 +13,9 @@ defmodule HelloTeamWeb.ItemLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:item, Todos.get_item!(id))}
+     |> assign(:task, Todos.get_task!(id))}
   end
 
-  defp page_title(:show), do: "Show Item"
-  defp page_title(:edit), do: "Edit Item"
+  defp page_title(:show), do: "Show Task"
+  defp page_title(:edit), do: "Edit Task"
 end

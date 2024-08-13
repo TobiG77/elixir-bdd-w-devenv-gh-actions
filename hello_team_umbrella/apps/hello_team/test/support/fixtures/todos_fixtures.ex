@@ -5,17 +5,16 @@ defmodule HelloTeam.TodosFixtures do
   """
 
   @doc """
-  Generate a item.
+  Generate a task.
   """
-  def item_fixture(attrs \\ %{}) do
-    {:ok, item} =
+  def task_fixture(attrs \\ %{}) do
+    {:ok, task} =
       attrs
       |> Enum.into(%{
-        description: "some description",
         label: "some label"
       })
-      |> HelloTeam.Todos.create_item()
+      |> HelloTeam.Todos.create_task()
 
-    item
+    task
   end
 end

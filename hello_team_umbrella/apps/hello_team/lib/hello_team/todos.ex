@@ -6,99 +6,101 @@ defmodule HelloTeam.Todos do
   import Ecto.Query, warn: false
   alias HelloTeam.Repo
 
-  alias HelloTeam.Todos.Item
+  alias HelloTeam.Todos.Task
 
   @doc """
-  Returns the list of items.
+  Returns the list of tasks.
 
   ## Examples
 
-      iex> list_items()
-      [%Item{}, ...]
+      iex> list_tasks()
+      [%Task{}, ...]
 
   """
-  def list_items do
-    Repo.all(Item)
+  def list_tasks do
+    Repo.all(Task)
   end
 
   @doc """
-  Gets a single item.
+  Gets a single task.
 
-  Raises `Ecto.NoResultsError` if the Item does not exist.
+  Raises `Ecto.NoResultsError` if the Task does not exist.
 
   ## Examples
 
-      iex> get_item!(123)
-      %Item{}
+      iex> get_task!(123)
+      %Task{}
 
-      iex> get_item!(456)
+      iex> get_task!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_item!(id), do: Repo.get!(Item, id)
+  def get_task!(id), do: Repo.get!(Task, id)
 
   @doc """
-  Creates a item.
+  Creates a task.
 
   ## Examples
 
-      iex> create_item(%{field: value})
-      {:ok, %Item{}}
+      iex> create_task(%{field: value})
+      {:ok, %Task{}}
 
-      iex> create_item(%{field: bad_value})
+      iex> create_task(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_item(attrs \\ %{}) do
-    %Item{}
-    |> Item.changeset(attrs)
+  def create_task(attrs \\ %{}) do
+    IO.inspect(%{create_task: attrs})
+
+    %Task{}
+    |> Task.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a item.
+  Updates a task.
 
   ## Examples
 
-      iex> update_item(item, %{field: new_value})
-      {:ok, %Item{}}
+      iex> update_task(task, %{field: new_value})
+      {:ok, %Task{}}
 
-      iex> update_item(item, %{field: bad_value})
+      iex> update_task(task, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_item(%Item{} = item, attrs) do
-    item
-    |> Item.changeset(attrs)
+  def update_task(%Task{} = task, attrs) do
+    task
+    |> Task.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a item.
+  Deletes a task.
 
   ## Examples
 
-      iex> delete_item(item)
-      {:ok, %Item{}}
+      iex> delete_task(task)
+      {:ok, %Task{}}
 
-      iex> delete_item(item)
+      iex> delete_task(task)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_item(%Item{} = item) do
-    Repo.delete(item)
+  def delete_task(%Task{} = task) do
+    Repo.delete(task)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking item changes.
+  Returns an `%Ecto.Changeset{}` for tracking task changes.
 
   ## Examples
 
-      iex> change_item(item)
-      %Ecto.Changeset{data: %Item{}}
+      iex> change_task(task)
+      %Ecto.Changeset{data: %Task{}}
 
   """
-  def change_item(%Item{} = item, attrs \\ %{}) do
-    Item.changeset(item, attrs)
+  def change_task(%Task{} = task, attrs \\ %{}) do
+    Task.changeset(task, attrs)
   end
 end

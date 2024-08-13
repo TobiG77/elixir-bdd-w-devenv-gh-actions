@@ -34,6 +34,7 @@
 
   services.postgres = {
     enable = true;
+
     package = pkgs.postgresql_16;
     listen_addresses = "0.0.0.0";
     # TODO: can this use env vars?

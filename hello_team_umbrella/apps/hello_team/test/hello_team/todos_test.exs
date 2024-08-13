@@ -3,59 +3,57 @@ defmodule HelloTeam.TodosTest do
 
   alias HelloTeam.Todos
 
-  describe "items" do
-    alias HelloTeam.Todos.Item
+  describe "tasks" do
+    alias HelloTeam.Todos.Task
 
     import HelloTeam.TodosFixtures
 
-    @invalid_attrs %{label: nil, description: nil}
+    @invalid_attrs %{label: nil}
 
-    test "list_items/0 returns all items" do
-      item = item_fixture()
-      assert Todos.list_items() == [item]
+    test "list_tasks/0 returns all tasks" do
+      task = task_fixture()
+      assert Todos.list_tasks() == [task]
     end
 
-    test "get_item!/1 returns the item with given id" do
-      item = item_fixture()
-      assert Todos.get_item!(item.id) == item
+    test "get_task!/1 returns the task with given id" do
+      task = task_fixture()
+      assert Todos.get_task!(task.id) == task
     end
 
-    test "create_item/1 with valid data creates a item" do
-      valid_attrs = %{label: "some label", description: "some description"}
+    test "create_task/1 with valid data creates a task" do
+      valid_attrs = %{label: "some label"}
 
-      assert {:ok, %Item{} = item} = Todos.create_item(valid_attrs)
-      assert item.label == "some label"
-      assert item.description == "some description"
+      assert {:ok, %Task{} = task} = Todos.create_task(valid_attrs)
+      assert task.label == "some label"
     end
 
-    test "create_item/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Todos.create_item(@invalid_attrs)
+    test "create_task/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Todos.create_task(@invalid_attrs)
     end
 
-    test "update_item/2 with valid data updates the item" do
-      item = item_fixture()
-      update_attrs = %{label: "some updated label", description: "some updated description"}
+    test "update_task/2 with valid data updates the task" do
+      task = task_fixture()
+      update_attrs = %{label: "some updated label"}
 
-      assert {:ok, %Item{} = item} = Todos.update_item(item, update_attrs)
-      assert item.label == "some updated label"
-      assert item.description == "some updated description"
+      assert {:ok, %Task{} = task} = Todos.update_task(task, update_attrs)
+      assert task.label == "some updated label"
     end
 
-    test "update_item/2 with invalid data returns error changeset" do
-      item = item_fixture()
-      assert {:error, %Ecto.Changeset{}} = Todos.update_item(item, @invalid_attrs)
-      assert item == Todos.get_item!(item.id)
+    test "update_task/2 with invalid data returns error changeset" do
+      task = task_fixture()
+      assert {:error, %Ecto.Changeset{}} = Todos.update_task(task, @invalid_attrs)
+      assert task == Todos.get_task!(task.id)
     end
 
-    test "delete_item/1 deletes the item" do
-      item = item_fixture()
-      assert {:ok, %Item{}} = Todos.delete_item(item)
-      assert_raise Ecto.NoResultsError, fn -> Todos.get_item!(item.id) end
+    test "delete_task/1 deletes the task" do
+      task = task_fixture()
+      assert {:ok, %Task{}} = Todos.delete_task(task)
+      assert_raise Ecto.NoResultsError, fn -> Todos.get_task!(task.id) end
     end
 
-    test "change_item/1 returns a item changeset" do
-      item = item_fixture()
-      assert %Ecto.Changeset{} = Todos.change_item(item)
+    test "change_task/1 returns a task changeset" do
+      task = task_fixture()
+      assert %Ecto.Changeset{} = Todos.change_task(task)
     end
   end
 end
