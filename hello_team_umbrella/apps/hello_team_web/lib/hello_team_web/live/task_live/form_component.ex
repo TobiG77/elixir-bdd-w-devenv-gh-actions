@@ -36,10 +36,11 @@ defmodule HelloTeamWeb.TaskLive.FormComponent do
 
   def subtask(assigns) do
     label_w_index = "sub_task_label_#{Integer.to_string(assigns.index)}"
+
     ~H"""
     <div class="sub_task">
-      <input type="text" label={ label_w_index } value={ @label } />
-      <button type="button" phx-click="remove_sub_task" phx-value-index={ @index }>Remove</button>
+      <input type="text" label={label_w_index} value={@label} />
+      <button type="button" phx-click="remove_sub_task" phx-value-index={@index}>Remove</button>
     </div>
     """
   end

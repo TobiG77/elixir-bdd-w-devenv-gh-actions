@@ -12,10 +12,6 @@
     filename = [".env-phoenix-dev" ".env-phoenix-test" ];
   };
 
-  pre-commit.hooks = {
-    shellcheck.enable = true;
-  };
-
   # https://devenv.sh/packages/
   packages = [ pkgs.git pkgs.act pkgs.gettext pkgs.nodejs_20 pkgs.postgresql pkgs.inotify-tools pkgs.glibcLocales ];
 
