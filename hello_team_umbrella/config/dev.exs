@@ -23,7 +23,7 @@ config :hello_team_web, HelloTeamWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "l9ui5wSogNwKALvjcd31REAOK9o7j3kSdn5Ipw5xPbe3RPUf4Bmwq8Emtipz0U76",
+  secret_key_base: System.get_env("HELLO_TEAM__SECRET_KEY_BASE"),
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:hello_team_web, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:hello_team_web, ~w(--watch)]}

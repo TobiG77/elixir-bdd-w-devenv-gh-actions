@@ -12,6 +12,10 @@
     filename = [".env-phoenix-dev" ".env-phoenix-test" ];
   };
 
+  pre-commit.hooks = {
+    shellcheck.enable = true;
+  };
+
   # https://devenv.sh/packages/
   packages = [ pkgs.git pkgs.act pkgs.gettext pkgs.nodejs_20 pkgs.postgresql pkgs.inotify-tools pkgs.glibcLocales ];
 
@@ -34,6 +38,7 @@
 
   services.postgres = {
     enable = true;
+
     package = pkgs.postgresql_16;
     listen_addresses = "0.0.0.0";
     # TODO: can this use env vars?
