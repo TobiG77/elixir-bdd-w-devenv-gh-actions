@@ -48,7 +48,6 @@ defmodule HelloTeamWeb.TaskLive.Index do
 
   def handle_event("add_sub_task", _params, socket) do
     task = socket.assigns.task
-    IO.inspect(%{add_sub_task: task})
     new_sub_tasks = task.sub_tasks ++ [%SubTask{label: "new sub task"}]
     updated_task = %Task{task | sub_tasks: new_sub_tasks}
     {:noreply, assign(socket, :task, updated_task)}
@@ -56,7 +55,6 @@ defmodule HelloTeamWeb.TaskLive.Index do
 
   def handle_event("remove_sub_task", %{"index" => index}, socket) do
     task = socket.assigns.task
-    IO.inspect(%{remove_sub_task: task})
     new_sub_tasks = List.delete_at(task.sub_tasks, String.to_integer(index))
     updated_task = %Task{task | sub_tasks: new_sub_tasks}
     {:noreply, assign(socket, :task, updated_task)}

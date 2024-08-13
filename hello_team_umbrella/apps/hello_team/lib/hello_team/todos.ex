@@ -50,10 +50,9 @@ defmodule HelloTeam.Todos do
 
   """
   def create_task(attrs \\ %{}) do
-    IO.inspect(%{create_task: attrs})
-
     %Task{}
     |> Task.changeset(attrs)
+    |> Ecto.Changeset.cast_embed(:sub_tasks, required: false)
     |> Repo.insert()
   end
 
