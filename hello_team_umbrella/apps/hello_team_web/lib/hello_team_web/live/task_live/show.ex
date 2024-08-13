@@ -1,7 +1,7 @@
-defmodule HelloTeamWeb.TodoListLive.Show do
+defmodule HelloTeamWeb.TaskLive.Show do
   use HelloTeamWeb, :live_view
 
-  alias HelloTeam.Tasks
+  alias HelloTeam.Todos
 
   @impl true
   def mount(_params, _session, socket) do
@@ -13,9 +13,9 @@ defmodule HelloTeamWeb.TodoListLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:todo_list, Tasks.get_todo_list!(id))}
+     |> assign(:task, Todos.get_task!(id))}
   end
 
-  defp page_title(:show), do: "Show Todo list"
-  defp page_title(:edit), do: "Edit Todo list"
+  defp page_title(:show), do: "Show Task"
+  defp page_title(:edit), do: "Edit Task"
 end
