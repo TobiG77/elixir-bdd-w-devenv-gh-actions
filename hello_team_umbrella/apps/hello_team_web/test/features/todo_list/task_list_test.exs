@@ -21,11 +21,11 @@ defmodule HelloTeamWeb.Features.TaskList do
     %{tasks: []}
   end
 
-  defgiven ~r/^a todo list "(?<task_label>[^"]+)" with (?<number_of_items>\d+) items$/,
-           %{task_label: task_label, number_of_items: number_of_items},
+  defgiven ~r/^a todo list "(?<task_label>[^"]+)" with (?<number_of_sub_tasks>\d+) items$/,
+           %{task_label: task_label, number_of_sub_tasks: number_of_sub_tasks},
            %{tasks: existing_tasks} do
     sub_tasks =
-      Enum.map(1..String.to_integer(number_of_items), fn _ ->
+      Enum.map(1..String.to_integer(number_of_sub_tasks), fn _ ->
         %{label: Faker.Company.buzzword(), description: Faker.Lorem.word()}
       end)
 
@@ -35,5 +35,17 @@ defmodule HelloTeamWeb.Features.TaskList do
     assert length(task.sub_tasks) == length(sub_tasks)
 
     %{tasks: [existing_tasks | task]}
+  end
+
+  defthen ~r/^todo list "(?<task_label>[^"]+)" should only show (?<number_of_sub_tasks>\d+) items$/,
+          %{number_of_sub_tasks: number_of_sub_tasks, task_label: task_label},
+          _state do
+    # TODO: this tests what is persisted in DB, not was is shown in UI
+    # adjust to access liveview module
+    matching_task = Enum.filter(Todos.list_tasks(), fn t -> t.label == task_label end)
+    assert length(matching_task) == 1
+    sub_tasks = Enum.at(matching_task, 0).sub_tasks
+
+    assert length(sub_tasks) == String.to_integer(number_of_sub_tasks)
   end
 end

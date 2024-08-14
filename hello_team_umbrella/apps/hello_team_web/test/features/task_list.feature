@@ -3,8 +3,8 @@ Feature: Task List
   Scenario: Each Task List has its own set of items
     Given a todo list "cleaning" with 5 items
     And a todo list "shopping" with 3 items
-    # Then todo list "shopping" should only show 3 items
-    # And todo list "cleaning" should only show 5 items
+    Then todo list "shopping" should only show 3 items
+    And todo list "cleaning" should only show 5 items
 
 
   # Scenario: Each Task List has its own set of sub tasks
