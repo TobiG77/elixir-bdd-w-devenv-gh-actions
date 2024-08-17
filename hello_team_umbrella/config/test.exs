@@ -9,7 +9,8 @@ config :hello_team, HelloTeam.Repo,
   username: System.get_env("HELLO_TEAM__PGUSER"),
   password: System.get_env("HELLO_TEAM__PGPASSWORD"),
   hostname: System.get_env("HELLO_TEAM__PGHOST"),
-  database: "#{System.get_env("HELLO_TEAM__PGDATABASE")}#{System.get_env("MIX_TEST_PARTITION")}",
+  database:
+    "#{System.get_env("HELLO_TEAM__PGDATABASE")}#test##{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
 

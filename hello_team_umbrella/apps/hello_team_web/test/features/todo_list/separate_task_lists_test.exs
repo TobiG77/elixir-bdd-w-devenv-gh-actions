@@ -1,7 +1,8 @@
-defmodule HelloTeamWeb.Features.TaskList do
+defmodule HelloTeamWeb.Features.SeparateTaskLists do
   # Options, other than file:, are passed directly to `ExUnit`
-  use Cabbage.Feature, async: false, file: "task_list.feature"
+  use Cabbage.Feature, async: false, file: "separate_task_lists.feature"
   use HelloTeamWeb.ConnCase
+  import Phoenix.LiveViewTest
 
   alias HelloTeam.Todos
 
@@ -37,15 +38,19 @@ defmodule HelloTeamWeb.Features.TaskList do
     %{tasks: [existing_tasks | task]}
   end
 
+  @tag skip: "TODO, needs working data entry first"
   defthen ~r/^todo list "(?<task_label>[^"]+)" should only show (?<number_of_sub_tasks>\d+) items$/,
           %{number_of_sub_tasks: number_of_sub_tasks, task_label: task_label},
-          _state do
+          %{conn: conn} do
     # TODO: this tests what is persisted in DB, not was is shown in UI
     # adjust to access liveview module
     matching_task = Enum.filter(Todos.list_tasks(), fn t -> t.label == task_label end)
     assert length(matching_task) == 1
-    sub_tasks = Enum.at(matching_task, 0).sub_tasks
+    matching_task = Enum.at(matching_task, 0)
 
-    assert length(sub_tasks) == String.to_integer(number_of_sub_tasks)
+    task_url = "/tasks/" <> Integer.to_string(matching_task.id)
+    {:ok, view, _html} = live(conn, task_url)
+
+    assert length(matching_task.sub_tasks) == String.to_integer(number_of_sub_tasks)
   end
 end

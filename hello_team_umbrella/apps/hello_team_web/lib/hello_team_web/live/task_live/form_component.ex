@@ -5,6 +5,8 @@ defmodule HelloTeamWeb.TaskLive.FormComponent do
 
   @impl true
   def render(assigns) do
+    IO.inspect(%{assign: assigns})
+
     ~H"""
     <div>
       <.header>
@@ -24,10 +26,10 @@ defmodule HelloTeamWeb.TaskLive.FormComponent do
         <%= for {sub_task, index} <- Enum.with_index(@task.sub_tasks) do %>
           <.subtask label={sub_task.label} index={index} />
         <% end %>
-        <button type="button" phx-click="add_sub_task">Add Sub Task</button>
+        <button type="button" id="add-sub-task" phx-click="add_sub_task">Add Sub Task</button>
 
         <:actions>
-          <.button phx-disable-with="Saving...">Save Task</.button>
+          <.button id="save-task" phx-disable-with="Saving...">Save Task</.button>
         </:actions>
       </.simple_form>
     </div>
@@ -35,11 +37,14 @@ defmodule HelloTeamWeb.TaskLive.FormComponent do
   end
 
   def subtask(assigns) do
-    label_w_index = "sub_task_label_#{Integer.to_string(assigns.index)}"
+    IO.inspect(assigns)
+
+    assigns =
+      assign(assigns, :@, "sub_task_label_#{Integer.to_string(assigns.index)}")
 
     ~H"""
     <div class="sub_task">
-      <input type="text" label={label_w_index} value={@label} />
+      <.input field={@form[:label]} type="text" label={@label_w_index} />
       <button type="button" phx-click="remove_sub_task" phx-value-index={@index}>Remove</button>
     </div>
     """

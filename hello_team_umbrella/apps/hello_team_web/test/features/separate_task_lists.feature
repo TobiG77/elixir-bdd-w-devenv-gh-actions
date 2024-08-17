@@ -1,4 +1,4 @@
-Feature: Task List
+Feature: Separate Task Lists
 
   Scenario: Each Task List has its own set of items
     Given a todo list "cleaning" with 5 items
